@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Grant Petersen-Speelman
+  description: Prepare deploy user for capistrano or mina deployment
+  license: license (GNU GENERAL PUBLIC LICENSE)
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - 16.04
+
+  categories:
+  - web
+  - development
+
+dependencies: []

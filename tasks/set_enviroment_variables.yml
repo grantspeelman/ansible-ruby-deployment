@@ -1,0 +1,23 @@
+- name: set RAILS_ENV in .bashrc
+  lineinfile: dest=/home/{{app_deploy_name}}/.bashrc insertafter="^# for examples" regexp="RAILS_ENV=" line="export RAILS_ENV=production"
+
+- name: create .env
+  file: path=/home/{{app_deploy_name}}/.env state=touch owner={{app_deploy_name}} group=sys mode=0555
+
+- name: set app enviroment variables
+  lineinfile: dest=/home/{{app_deploy_name}}/.env regexp="{{ item.key }}=" line="export {{ item.key }}=\"{{ item.value }}\""
+  with_dict: "{{app_env}}"
+
+- name: Setup application environment variables
+  template: src=appenv.j2 dest=/home/deploy/.appenv owner=deploy group=root mode=0644
+
+- name: Include application environment variables in the bashrc
+  blockinfile:
+    dest: /home/{{app_deploy_name}}/.bashrc
+    insertbefore: "BOF"
+    backup: yes
+    state: present
+    block: |
+      if [ -f "$HOME/.env" ] ; then
+        . "$HOME/.env"
+      fi

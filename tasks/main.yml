@@ -1,0 +1,8 @@
+- include: create_deploy_user.yml
+- include: set_enviroment_variables.yml
+
+- name: Install Bundler
+  gem: name=bundler user_install=yes state=latest
+
+- name: add user gems path to .bashrc
+  lineinfile: dest=/home/{{app_deploy_name}}/.bashrc line="PATH=\"$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH\""
