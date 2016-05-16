@@ -8,9 +8,6 @@
   lineinfile: dest=/home/{{app_deploy_name}}/.env regexp="{{ item.key }}=" line="export {{ item.key }}=\"{{ item.value }}\""
   with_dict: "{{app_env}}"
 
-- name: Setup application environment variables
-  template: src=appenv.j2 dest=/home/deploy/.appenv owner=deploy group=root mode=0644
-
 - name: Include application environment variables in the bashrc
   blockinfile:
     dest: /home/{{app_deploy_name}}/.bashrc

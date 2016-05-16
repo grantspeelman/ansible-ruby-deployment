@@ -3,7 +3,6 @@ Ansible role to prepare for capistrano or mina deployments
 
  * user installs bundler
  * /home/{{app_deploy_name}}/.env and included in .bashrc 
- * /home/{{app_deploy_name}}/shared/config/database.yml
  * /etc/logrotate.d/{{app_deploy_name}}
  
 ## Role variables
@@ -11,13 +10,8 @@ Ansible role to prepare for capistrano or mina deployments
 Below is a list of default values along with a description of what they do.
 
 ```
-
-app_deploy_name: "deploy"
+app_deploy_name: "deploy" # recommended you change this to be named after the app
 
 app_env:
-  TEST: "1"
-  
-# you need to set
-app_db_adapter: 
-
+  DATABASE_URL: "postgresql://localhost/production?pool=5" # please override this with the correct details
 ```
