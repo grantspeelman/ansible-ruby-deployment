@@ -1,3 +1,4 @@
 app_deploy_name: 'deploy'
+app_ruby_version: '2.3'
 app_env:
   DATABASE_URL: "postgresql://localhost/production?pool=5"

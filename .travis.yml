@@ -6,7 +6,9 @@ env:
   - SITE_AND_INVENTORY="tests/test.yml -i tests/inventory"
 
 install:
-  - "pip install ansible"
+  - pip install ansible
+  - echo -e 'localhost  ansible_connection=local' > tests/inventory
+  - echo -e '[defaults]\nroles_path = ../\nhostfile = ./tests/inventory' > ansible.cfg
 
 script:
   - "ansible-playbook $SITE_AND_INVENTORY --syntax-check"

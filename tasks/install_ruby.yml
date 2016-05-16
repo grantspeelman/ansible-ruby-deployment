@@ -1,0 +1,15 @@
+- name: Install software-properties-common
+  apt: name=software-properties-common state=present
+  with_items:
+    - software-properties-common
+
+- name: add brightbox ruby repo
+  apt_repository: repo='ppa:brightbox/ruby-ng' update_cache=yes
+
+- name: Install ruby
+  apt: name={{item}} state=present
+  notify: switch ruby
+  with_items:
+    - "ruby{{app_ruby_version}}"
+    - "ruby{{app_ruby_version}}-dev"
+    - ruby-switch

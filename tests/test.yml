@@ -1,7 +1,4 @@
----
 - hosts: localhost
   remote_user: travis
-  sudo: true
-
-  roles:
-    - ruby-deployment
+  become: true
+  become_user: root
