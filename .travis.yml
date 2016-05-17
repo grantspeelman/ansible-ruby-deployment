@@ -1,8 +1,6 @@
 ---
+sudo: required
 dist: trusty
-language: "python"
-python: "2.7"
-ruby: "2.3"
 
 env:
   - SITE_AND_INVENTORY="spec/test.yml -i spec/inventory"
