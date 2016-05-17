@@ -1,8 +1,12 @@
 - name: set RAILS_ENV in .bashrc
   lineinfile: dest=/home/{{app_deploy_name}}/.bashrc insertafter="^# for examples" regexp="RAILS_ENV=" line="export RAILS_ENV=production"
 
+- stat: path=/home/{{app_deploy_name}}/.env
+  register: env_file
+
 - name: create .env
-  file: path=/home/{{app_deploy_name}}/.env state=touch owner={{app_deploy_name}} group=sys mode=0555
+  file: path=/home/{{app_deploy_name}}/.env state=touch owner={{app_deploy_name}} group={{app_deploy_name}} mode=0555
+  when: not env_file.stat.exists
 
 - name: set app enviroment variables
   lineinfile: dest=/home/{{app_deploy_name}}/.env regexp="{{ item.key }}=" line="export {{ item.key }}=\"{{ item.value }}\""
