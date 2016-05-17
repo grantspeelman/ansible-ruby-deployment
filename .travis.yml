@@ -10,7 +10,7 @@ before_install:
   - curl http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc | sudo apt-key add -
   - echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get -qq update
-  - sudo apt-get install -y virtualbox-5.0 vagrant
+  - sudo apt-get install -y dkms virtualbox-5.0 vagrant
   - sudo /etc/init.d/vboxdrv setup
 
 install:
