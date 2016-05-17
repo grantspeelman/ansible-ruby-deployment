@@ -8,7 +8,7 @@ options = Net::SSH::Config.for('default', ['ssh_config'])
 
 options[:user] ||= Etc.getlogin
 
-set :host,        options[:host_name] || host
+set :host,        options[:host_name]
 set :ssh_options, options
 
 # Disable sudo
