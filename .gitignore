@@ -1,2 +1,5 @@
 .vagrant
+.rspec
 ansible.cfg
+vendor/bundle
+ssh_config

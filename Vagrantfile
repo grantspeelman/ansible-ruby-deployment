@@ -78,7 +78,7 @@ SCRIPT
 
 
   config.vm.provision 'ansible' do |ansible|
-    ansible.playbook = 'tests/vagrant.yml'
+    ansible.playbook = 'spec/vagrant.yml'
     ansible.verbose = 'vv'
   end
 end
