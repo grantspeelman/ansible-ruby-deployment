@@ -2,3 +2,5 @@
   remote_user: travis
   become: true
   become_user: root
+  roles:
+    - ruby-deployment
