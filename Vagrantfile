@@ -71,7 +71,6 @@ Vagrant.configure(2) do |config|
 
   # This should already be in the box.
   $script = <<SCRIPT
-  apt-get update
   apt-get -qq install python python-pycurl python-apt
 SCRIPT
 
