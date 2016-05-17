@@ -12,7 +12,9 @@ describe user('deploy') do
   it { should exist }
 end
 
-describe command('bundle --version') do
-  let(:sudo_options) { '-u deploy -i' }
-  its(:stdout) { should contain('Bundler version 1.') }
+unless ENV['SPEC_BACKEND_EXEC']
+  describe command('bundle --version') do
+    let(:sudo_options) { '-u deploy -i' }
+    its(:stdout) { should contain('Bundler version 1.') }
+  end
 end
