@@ -6,6 +6,7 @@ env:
   - SITE_AND_INVENTORY="spec/test.yml -i spec/inventory"
 
 install:
+  - pip install --upgrade pip # upgrade to latest pip
   - pip install ansible
   - echo -e 'localhost  ansible_connection=local' > spec/inventory
   - echo -e '[defaults]\nroles_path = ../\nhostfile = ./spec/inventory' > ansible.cfg
