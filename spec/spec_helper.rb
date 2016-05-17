@@ -2,14 +2,18 @@ require 'serverspec'
 require 'net/ssh'
 require 'tempfile'
 
-set :backend, :ssh
+if ENV['SPEC_BACKEND_EXEC']
+  set :backend, :exec
+else
+  set :backend, :ssh
 
-options = Net::SSH::Config.for('default', ['ssh_config'])
+  options = Net::SSH::Config.for('default', ['ssh_config'])
 
-options[:user] ||= Etc.getlogin
+  options[:user] ||= Etc.getlogin
 
-set :host,        options[:host_name]
-set :ssh_options, options
+  set :host,        options[:host_name]
+  set :ssh_options, options
+end
 
 # Disable sudo
 # set :disable_sudo, true
