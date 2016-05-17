@@ -69,6 +69,8 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
 
+  config.vm.boot_timeout = 500
+
   # This should already be in the box.
   $script = <<SCRIPT
   apt-get -qq install python python-pycurl python-apt
