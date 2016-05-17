@@ -3,9 +3,9 @@ sudo: required
 dist: trusty
 
 install:
-  - pip install ansible
-  - apt-get install virtualbox-qt
-  - apt-get install vagrant
+  - sudo pip install ansible
+  - sudo apt-get install virtualbox-qt
+  - sudo apt-get install vagrant
 #  - echo -e 'localhost  ansible_connection=local' > spec/inventory
 #  - echo -e '[defaults]\nroles_path = ../\nhostfile = ./spec/inventory' > ansible.cfg
 
