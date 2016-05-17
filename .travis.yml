@@ -2,20 +2,24 @@
 sudo: required
 dist: trusty
 
-env:
-  - SITE_AND_INVENTORY="spec/test.yml -i spec/inventory"
-
 install:
   - pip install --upgrade pip # upgrade to latest pip
   - pip install ansible
-  - echo -e 'localhost  ansible_connection=local' > spec/inventory
-  - echo -e '[defaults]\nroles_path = ../\nhostfile = ./spec/inventory' > ansible.cfg
+  - apt-get install virtualbox-qt
+  - apt-get install vagrant
+#  - echo -e 'localhost  ansible_connection=local' > spec/inventory
+#  - echo -e '[defaults]\nroles_path = ../\nhostfile = ./spec/inventory' > ansible.cfg
 
 script:
-  - "ansible-playbook $SITE_AND_INVENTORY --syntax-check"
-  - "ansible-playbook $SITE_AND_INVENTORY --connection=local -vvv --sudo"
-  - "bundle install --path vendor/bundle"
-  - "SPEC_BACKEND_EXEC=yes bundle exec rspec spec"
+  - "./run_specs.sh"
   # Role idempotence
-  - "ansible-playbook $SITE_AND_INVENTORY --connection=local -vvv --sudo | tee rerun.log"
+  - "vagrant provision | tee rerun.log"
   - "cat rerun.log | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
+
+#  - "ansible-playbook $SITE_AND_INVENTORY --syntax-check"
+#  - "ansible-playbook $SITE_AND_INVENTORY --connection=local -vvv --sudo"
+#  - "bundle install --path vendor/bundle"
+#  - "SPEC_BACKEND_EXEC=yes bundle exec rspec spec"
+#  # Role idempotence
+#  - "ansible-playbook $SITE_AND_INVENTORY --connection=local -vvv --sudo | tee rerun.log"
+#  - "cat rerun.log | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
