@@ -1,4 +1,7 @@
 # ansible-ruby-deployment
+
+[![Build Status](https://travis-ci.org/grantspeelman/ansible-ruby-deployment.svg?branch=master)](https://travis-ci.org/grantspeelman/ansible-ruby-deployment)
+
 Ansible role to install ruby and prepare for capistrano or mina deployments
 
  * user installs bundler
