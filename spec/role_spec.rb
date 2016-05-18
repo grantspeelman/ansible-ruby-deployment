@@ -8,6 +8,11 @@ describe package('ruby2.3-dev') do
   it { should be_installed }
 end
 
+# required for mina or capistrano deploys
+describe package('git') do
+  it { should be_installed }
+end
+
 describe user('deploy') do
   it { should exist }
 end
