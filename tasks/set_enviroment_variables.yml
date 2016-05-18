@@ -16,7 +16,6 @@
   blockinfile:
     dest: /home/{{app_deploy_name}}/.bashrc
     insertbefore: "BOF"
-    backup: yes
     state: present
     block: |
       if [ -f "$HOME/.env" ] ; then
