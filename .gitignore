@@ -1,5 +1,7 @@
 .vagrant
 .rspec
+.idea
 ansible.cfg
 vendor/bundle
 ssh_config
+.bundle
