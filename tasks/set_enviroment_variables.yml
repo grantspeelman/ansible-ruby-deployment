@@ -5,8 +5,11 @@
   register: env_file
 
 - name: create .env
-  file: path=/home/{{app_deploy_name}}/.env state=touch owner={{app_deploy_name}} group={{app_deploy_name}} mode=0555
+  file: path=/home/{{app_deploy_name}}/.env state=touch
   when: not env_file.stat.exists
+
+- name: set owner and group for .env
+  file: path=/home/{{app_deploy_name}}/.env owner={{app_deploy_name}} group={{app_deploy_name}} mode=0644
 
 - name: set app enviroment variables
   lineinfile: dest=/home/{{app_deploy_name}}/.env regexp="{{ item.key }}=" line="export {{ item.key }}=\"{{ item.value }}\""
