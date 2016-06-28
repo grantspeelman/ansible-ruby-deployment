@@ -2,11 +2,13 @@ galaxy_info:
   author: Grant Petersen-Speelman
   description: Prepare deploy user for capistrano or mina deployment
   license: license (GNU GENERAL PUBLIC LICENSE)
+  min_ansible_version: 2.0
 
   platforms:
   - name: Ubuntu
     versions:
-    - all
+    - trusty
+    - xenial
 
   categories:
   - web
