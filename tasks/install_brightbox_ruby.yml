@@ -5,8 +5,13 @@
 
 - name: add brightbox ruby repo
   apt_repository: repo='ppa:brightbox/ruby-ng' update_cache=yes
+  when: ansible_distribution_major_version != '16'
 
-- name: Install ruby
+- name: add brightbox ruby repo
+  apt_repository: repo='ppa:brightbox/ruby-ng-experimental' update_cache=yes
+  when: ansible_distribution_major_version == '16'
+
+- name: Install brightbox ruby
   apt: name={{item}} state=present
   notify: switch ruby
   with_items:

@@ -1,4 +1,10 @@
 - include: create_deploy_user.yml
 - include: set_enviroment_variables.yml
-- include: install_ruby.yml
+
+- include: install_brightbox_ruby.yml
+  when: app_ruby_version != 'system'
+
+- include: install_system_ruby.yml
+  when: app_ruby_version == 'system'
+
 - include: setup-bundler.yml
