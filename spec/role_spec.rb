@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe package('ruby2.3') do
-  it { should be_installed }
-end
-
-describe package('ruby2.3-dev') do
-  it { should be_installed }
-end
+# describe package('ruby2.3') do
+#   it { should be_installed }
+# end
+#
+# describe package('ruby2.3-dev') do
+#   it { should be_installed }
+# end
 
 # required for mina or capistrano deploys
 describe package('git') do
@@ -24,6 +24,16 @@ describe file('/home/deploy/.env') do
 end
 
 unless ENV['SPEC_BACKEND_EXEC']
+  describe command('gem --version') do
+    let(:sudo_options) { '-u deploy -i' }
+    its(:stdout) { should contain('1.') }
+  end
+
+  describe command('ruby --version') do
+    let(:sudo_options) { '-u deploy -i' }
+    its(:stdout) { should contain('ruby') }
+  end
+
   describe command('bundle --version') do
     let(:sudo_options) { '-u deploy -i' }
     its(:stdout) { should contain('Bundler version 1.') }

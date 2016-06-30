@@ -7,7 +7,7 @@ if ENV['SPEC_BACKEND_EXEC']
 else
   set :backend, :ssh
 
-  options = Net::SSH::Config.for('default', ['ssh_config'])
+  options = Net::SSH::Config.for(ENV['TARGET_VAGRANT'] || 'default', ['ssh_config'])
 
   options[:user] ||= Etc.getlogin
 
