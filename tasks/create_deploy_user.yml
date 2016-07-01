@@ -4,8 +4,11 @@
 - name: Deploy ssh directory is present
   file: path=/home/{{app_deploy_name}}/.ssh owner={{app_deploy_name}} group={{app_deploy_name}} mode=0700 state=directory
 
-- name: Creates directory shared directory
+- name: Creates directory shared/config directory
   file: path=/home/{{app_deploy_name}}/shared/config state=directory owner={{app_deploy_name}} group={{app_deploy_name}}
+
+- name: Creates directory shared/log directory
+  file: path=/home/{{app_deploy_name}}/shared/log state=directory owner={{app_deploy_name}} group={{app_deploy_name}}
 
 - name: add rails log logrotation for all rails log files
   template: src=etc/logrotate.d/_logrotate_conf dest=/etc/logrotate.d/{{app_deploy_name}} owner=root group=root mode=0644

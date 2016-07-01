@@ -23,6 +23,11 @@ describe file('/home/deploy/.env') do
   it { should be_mode(644) }
 end
 
+describe file('/home/deploy/shared/log') do
+  it { should be_directory }
+  it { should be_mode(755) }
+end
+
 unless ENV['SPEC_BACKEND_EXEC']
   describe command('gem --version') do
     let(:sudo_options) { '-u deploy -i' }
